@@ -20,3 +20,5 @@ if ($resultado) {
     echo '<h1>No se pudo modificar al estudiante</h1>';
 }
 ?>
+<br>
+<a href="../index.php">Volver al inicio</a>
