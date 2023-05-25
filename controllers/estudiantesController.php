@@ -18,17 +18,17 @@ class EstudianteController extends BaseController
         $sql .= '"' . $estudiante->getNombre() . '",';
         $sql .= '"' . $estudiante->getApellido() . '"';
         $sql .= ')';
-        $conexiondb = new ConexionDbController();
-        $resultadoSQL = $conexiondb->execSQL($sql);
-        $conexiondb->close();
+        $conexionBd = new ConexionBdController();
+        $resultadoSQL = $conexionBd->execSQL($sql);
+        $conexionBd->close();
         return $resultadoSQL;
     }
 
     function read()
     {
         $sql = 'select * from estudiantes';
-        $conexiondb = new ConexionDbController();
-        $resultadoSQL = $conexiondb->execSQL($sql);
+        $conexionBd = new ConexionBdController();
+        $resultadoSQL = $conexionBd->execSQL($sql);
         $estudiantes = [];
         while ($registro = $resultadoSQL->fetch_assoc()) {
             $estudiante = new Estudiante();
@@ -53,7 +53,7 @@ class EstudianteController extends BaseController
             $estudiante->setNombre($registro['nombres']);
             $estudiante->setApellido($registro['apellidos']);
         }
-        $conexiondb->close();
+        $conexionBd->close();
         return $estudiante;
     }
 
@@ -65,7 +65,7 @@ class EstudianteController extends BaseController
         $sql .= ' where codigo=' . $codigo;
         $conexiondb = new ConexionDbController();
         $resultadoSQL = $conexiondb->execSQL($sql);
-        $conexiondb->close();
+        $conexionBd->close();
         return $resultadoSQL;
     }
 
@@ -74,7 +74,7 @@ class EstudianteController extends BaseController
         $sql = 'delete from estudiantes where codigo=' . $codigo;
         $conexiondb = new ConexionDbController();
         $resultadoSQL = $conexiondb->execSQL($sql);
-        $conexiondb->close();
+        $conexionBd->close();
         return $resultadoSQL;
     }
 }

@@ -1,20 +1,20 @@
 <?php
 require '../models/estudiante.php';
-require '../controllers/conexionBdController.php';
+require '../controllers/conexionDbController.php';
 require '../controllers/baseController.php';
 require '../controllers/estudiantesController.php';
 
 use estudiante\Estudiante;
 use estudianteController\EstudianteController;
 
-$codigo = empty($_GET['codigo']) ? '' : $_GET['CODIGO'];
+$codigo = empty($_GET['codigo']) ? '' : $_GET['codigo'];
 $titulo = 'Registrar Estudiante';
 $urlAction = "accion_registrar_estudiante.php";
 $estudiante = new Estudiante();
 if (!empty($codigo)) {
     $titulo = 'Modificar Estudiante';
     $urlAction = "accion_modificar_estudiante.php";
-    $estudianteController = new UsuarioController();
+    $estudianteController = new EstudianteController();
     $estudiante = $estudianteController->readRow($codigo); 
 }
 ?>
@@ -35,12 +35,12 @@ if (!empty($codigo)) {
         </label>
         <br>
         <label>
-            <span>Nombre:</span>
+            <span>Nombres:</span>
             <input type="text" name="nombre" value="<?php echo $estudiante->getNombre(); ?>" required>
         </label>
         <br>
         <label>
-            <span>Apellido:</span>
+            <span>Apellidos:</span>
             <input type="text" name="apellido" value="<?php echo $estudiante->getApellido(); ?>" required>
         </label>
         <br>

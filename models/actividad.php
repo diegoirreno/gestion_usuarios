@@ -7,7 +7,6 @@ class Actividad extends Estudiante
     private $id;
     private $descripcion;
     private $nota;
-    private Estudiante $codigo;
 
     public function getId()
     {

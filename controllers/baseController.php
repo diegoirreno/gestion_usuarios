@@ -6,7 +6,7 @@ abstract class BaseController
 {
     abstract function create($model);
     abstract function read();
-    abstract function update($id, $model);
-    abstract function delete($id);
-    abstract function readRow($id);
+    abstract function update($codigo, $model);
+    abstract function delete($codigo);
+    abstract function readRow($codigo);
 }
