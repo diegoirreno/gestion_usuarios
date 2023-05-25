@@ -10,3 +10,12 @@ abstract class BaseController
     abstract function delete($codigo);
     abstract function readRow($codigo);
 }
+
+abstract class ActBaseController
+{
+    abstract function create($model);
+    abstract function read($codigo);
+    abstract function update($id, $model);
+    abstract function delete($id);
+    abstract function readRow($id);
+}

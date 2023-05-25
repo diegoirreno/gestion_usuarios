@@ -2,11 +2,12 @@
 
 namespace actividad;
 
-class Actividad extends Estudiante
+class Actividad 
 {
     private $id;
     private $descripcion;
     private $nota;
+    private $codigoE;
 
     public function getId()
     {
@@ -32,6 +33,14 @@ class Actividad extends Estudiante
     public function setNota($value)
     {
         $this->nota = $value;
+    }
+    public function getCodigoE()
+    {
+        return $this->codigoE;
+    }
+    public function setCodigoE($value)
+    {
+        $this->codigoE = $value;
     }
 
 

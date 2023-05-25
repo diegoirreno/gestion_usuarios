@@ -1,57 +1,59 @@
 <?php
 
-namespace estudianteController;
+namespace actividadController;
 
 use baseControler\BaseController;
 use conexionDb\ConexionDbController;
-use estudiante\Estudiante;
+use actividad\Actividad;
 
-class EstudianteController extends BaseController
+class ActividadController extends BaseController
 {
 
-    function create($estudiante)
+    function create($actividad)
     {
-        $sql = 'insert into estudiantes ';
-        $sql .= '(codigo,nombres,apellidos) values ';
+        $sql = 'insert into actividades ';
+        $sql .= '(descripcion,nota,codigoE) values ';
         $sql .= '(';
-        $sql .= $estudiante->getCodigo() . ',';
-        $sql .= '"' . $estudiante->getNombre() . '",';
-        $sql .= '"' . $estudiante->getApellido() . '"';
-        $sql .= ')';
+        $sql .= $actividad->getDescripcion() . ',';
+        $sql .= number_format($actividad->getNota(). 2,'.', '') . ',';
+        $sql .= $actividad->getCodigoE() . ')';
         $conexiondb = new ConexionDbController();
         $resultadoSQL = $conexiondb->execSQL($sql);
         $conexiondb->close();
         return $resultadoSQL;
     }
 
-    function read()
+    function read($codigo)
     {
-        $sql = 'select * from estudiantes';
+        $sql = 'select * from actividades';
+        $sql .= 'where codigoE =' .$codigo;
         $conexiondb = new ConexionDbController();
         $resultadoSQL = $conexiondb->execSQL($sql);
-        $estudiantes = [];
+        $actividades = [];
         while ($registro = $resultadoSQL->fetch_assoc()) {
-            $estudiante = new Estudiante();
-            $estudiante->setCodigo($registro['codigo']);
-            $estudiante->setNombre($registro['nombres']);
-            $estudiante->setApellido($registro['apellidos']);
-            array_push($estudiantes, $estudiante);
+            $actividad = new Actividad();
+            $actividad->setId($registro['id']);
+            $actividad->setDescripcion($registro['descripcion']);
+            $actividad->setNota($registro['nota']);
+            $actividad->setCodigoE($codigo);
+            array_push($actividades, $actividad);
         }
         $conexiondb->close();
-        return $estudiantes;
+        return $actividades;
     }
 
-    function readRow($codigo)
+    function readRow($id)
     {
-        $sql = 'select * from estudiantes';
-        $sql .= ' where codigo=' .$codigo;
+        $sql = 'select * from actividades';
+        $sql .= ' where id=' .$id;
         $conexiondb = new ConexionDbController();
         $resultadoSQL = $conexiondb->execSQL($sql);
-        $estudiante = new Estudiante();
+        $actividad = new Actividad();
         while ($registro = $resultadoSQL->fetch_assoc()) {
-            $estudiante->setCodigo($registro['codigo']);
-            $estudiante->setNombre($registro['nombres']);
-            $estudiante->setApellido($registro['apellidos']);
+            $actividad->setId($id);
+            $actividad->setCodigo($registro['codigo']);
+            $actividad->setNombre($registro['nombres']);
+            $actividad->setApellido($registro['apellidos']);
         }
         $conexiondb->close();
         return $estudiante;
