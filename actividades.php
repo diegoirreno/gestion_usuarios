@@ -10,12 +10,12 @@
     use actividad\Actividad;
     use actividadController\ActividadController;
 
-    $codigoEstudiante = $_GET['codigo'];
-    $nombreEstudiante = $_GET['nombre'];
-    $apellidoEstudiante = $_GET['apellido'];
+    $code = $_GET['codigo'];
+    $name = $_GET['nombre'];
+    $apell = $_GET['apellido'];
     
     $actividadController = new ActividadController();
-    $actividades = $actividadController->read($codigoEstudiante);
+    $actividades = $actividadController->read($code);
 
 ?>
 
@@ -25,7 +25,6 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividades</title>
     <link rel="stylesheet" href="views/css/estilos.css">
 </head>
@@ -39,8 +38,8 @@
 
             <?php
             
-            echo '<h3>Estudiante: ' . $nombreEstudiante . '</h3>';
-            echo '<h3>Código: ' . $codigoEstudiante . '</h3>';
+            echo '<h3>Estudiante: ' . $name . '</h3>';
+            echo '<h3>Código: ' . $code . '</h3>';
             
             ?>
 
@@ -63,8 +62,8 @@
                         echo '<td>' . $actividad->getDescripcion() . '</td>';
                         echo '<td>' . $actividad->getNota() . '</td>';
                         echo '<td>';
-                        echo '      <a href="views/form_actividad.php?id=' . $actividad->getId() . ' &codigo=' . $codigoEstudiante . '&nombre=' . $nombreEstudiante . '&apellido=' . $apellidoEstudiante . '">Modificar</a>';
-                        echo '      <a href="views/accion_borrar_actividad.php?id=' . $actividad->getId() . '&codigo=' . $codigoEstudiante . '&nombre=' . $nombreEstudiante . '&apellido=' . $apellidoEstudiante . '">Eliminar</a>';
+                        echo '      <a href="views/form_actividad.php?id=' . $actividad->getId() . ' &codigo=' . $code . '&nombre=' . $name . '&apellido=' . $apell . '">Modificar</a>';
+                        echo '      <a href="views/accion_borrar_actividad.php?id=' . $actividad->getId() . '&codigo=' . $code . '&nombre=' . $name. '&apellido=' . $apell . '">Eliminar</a>';
                         echo '</td>';
                         echo '</tr>';
                     }
@@ -78,15 +77,15 @@
             <?php
 
             echo '<form action="views/form_actividad.php" method="post">';
-            echo '<input type="hidden" name="codigo" value="' . $codigoEstudiante . '">';
-            echo '<input type="hidden" name="nombre" value="' . $nombreEstudiante . '">';
-            echo '<input type="hidden" name="apellido" value="' . $apellidoEstudiante . '">';
+            echo '<input type="hidden" name="codigo" value="' . $code . '">';
+            echo '<input type="hidden" name="nombre" value="' . $name . '">';
+            echo '<input type="hidden" name="apellido" value="' . $apell . '">';
             echo '<button type="submit">Agregar actividad</button>';
             echo '</form>';
 
             ?>
 
-
+            <br>
             <a href="index.php">Volver</a>
         </main>
 

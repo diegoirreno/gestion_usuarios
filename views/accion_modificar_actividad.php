@@ -7,8 +7,8 @@ require '../controllers/actividadesController.php';
 use actividad\Actividad;
 use actividadController\ActividadController;
 
-$nombreEstudiante = $_POST['nombre'];
-$apellidoEstudiante = $_POST['apellido'];
+$name = $_POST['nombre'];
+$apell = $_POST['apellido'];
 
 $actividad = new Actividad();
 $actividad->setId($_POST['id']);
@@ -23,6 +23,8 @@ if ($resultado) {
 } else {
     echo '<h1>No se pudo modificar la actividad</h1>';
 }
+
+echo '<a href="../actividades.php?codigo=' . $actividad->getCodigoE() . '&nombre=' . $name . '&apellido=' . $apell . '">Volver</a>';
 
 ?>
 

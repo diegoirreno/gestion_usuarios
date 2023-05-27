@@ -7,8 +7,8 @@ require '../controllers/actividadesController.php';
 use actividad\Actividad;
 use actividadController\ActividadController;
 
-$nombre = $_POST['nombre'];
-$apellido = $_POST['apellido'];
+$name = $_POST['nombre'];
+$apell = $_POST['apellido'];
 
 $actividad = new Actividad();
 $actividad->setDescripcion($_POST['descripcion']);
@@ -22,5 +22,7 @@ if($resultado){
 }else{
     echo '<h1>No se pudo registrar la actividad</h1>';
 }
+
+echo '<a href="../actividades.php?codigo=' . $actividad->getCodigoE() . '&nombre=' . $name . '&apellido=' . $apell . '">Volver</a>';
 
 ?>
